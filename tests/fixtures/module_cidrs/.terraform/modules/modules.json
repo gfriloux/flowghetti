@@ -1,0 +1,15 @@
+{
+  "Modules": [
+    { "Key": "", "Source": "", "Dir": "." },
+    {
+      "Key": "cidrs",
+      "Source": "git::ssh://git@example/cidrs.git?ref=v1.0.0",
+      "Dir": ".terraform/modules/cidrs"
+    },
+    {
+      "Key": "glow",
+      "Source": "git::ssh://git@example/glowwiththeflow.git?ref=v1.0.0",
+      "Dir": ".terraform/modules/glow"
+    }
+  ]
+}

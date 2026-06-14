@@ -1,0 +1,26 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-0cda00644e0506968" {
+    label="VPC vpc-0cda00644e0506968";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:prodapp" [label="prod-app\n(nlb)", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+  }
+  subgraph "cluster_external" {
+    label="External";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#f0f0f0";
+    color="#9aa0a6";
+    fontcolor="#5f6b7a";
+    "pl:data.aws_ec2_managed_prefix_list.cloudfront.id" [label="data.aws_ec2_managed_prefix_list.cloudfront.id", shape=note, style="filled", fillcolor="#eee9fb", color="#8a6dd6"];
+  }
+  "pl:data.aws_ec2_managed_prefix_list.cloudfront.id" -> "res:prodapp" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+}

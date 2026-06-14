@@ -1,0 +1,26 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-0cda00644e0506968" {
+    label="VPC vpc-0cda00644e0506968";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:dns" [label="dns\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+  }
+  subgraph "cluster_external" {
+    label="External";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#f0f0f0";
+    color="#9aa0a6";
+    fontcolor="#5f6b7a";
+    "cidr:0.0.0.0/0" [label="0.0.0.0/0", shape=note, style="filled", fillcolor="#f7f7f7", color="#9aa0a6"];
+  }
+  "cidr:0.0.0.0/0" -> "res:dns" [label="udp/53", color="#5f6b7a", fontcolor="#5f6b7a"];
+}

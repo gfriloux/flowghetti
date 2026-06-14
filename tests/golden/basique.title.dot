@@ -1,0 +1,21 @@
+digraph flows {
+  rankdir=LR;
+  label="staging / eu-west-1";
+  labelloc=t;
+  fontname="sans-serif";
+  fontsize=16;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-0cda00644e0506968" {
+    label="VPC vpc-0cda00644e0506968";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:esengineapp" [label="es_engine-app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+    "res:prodapp" [label="prod-app\n(nlb)", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+  }
+  "res:prodapp" -> "res:esengineapp" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+}

@@ -1,0 +1,17 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_module.generic_aws_vpc.vpc_id" {
+    label="VPC module.generic_aws_vpc.vpc_id";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:app" [label="app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+    "res:edge" [label="edge\n(nlb)", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+  }
+  "res:edge" -> "res:app" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+}

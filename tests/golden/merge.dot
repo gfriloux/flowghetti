@@ -1,0 +1,9 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  "res:backend" [label="backend\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+  "res:edgelb" [label="edge-lb\n(nlb)", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+  "res:backend" -> "res:edgelb" [label="tcp/22", color="#d98a1f", fontcolor="#d98a1f"];
+  "res:edgelb" -> "res:backend" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+}

@@ -1,0 +1,48 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-demo" {
+    label="VPC vpc-demo";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:app" [label="app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+  }
+  subgraph "cluster_Office" {
+    label="Office";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#e6f5f3";
+    color="#2aa39a";
+    fontcolor="#1f857d";
+    "cidr:198.51.100.0/24" [label="198.51.100.0/24", shape=note, style="filled", fillcolor="#f7f7f7", color="#9aa0a6", tooltip="local.office_cidr"];
+  }
+  subgraph "cluster_VPN" {
+    label="VPN";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#e6f5f3";
+    color="#2aa39a";
+    fontcolor="#1f857d";
+    "cidr:203.0.113.0/24" [label="203.0.113.0/24", shape=note, style="filled", fillcolor="#f7f7f7", color="#9aa0a6", tooltip="local.vpn_cidr"];
+  }
+  subgraph "cluster_external" {
+    label="External";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#f0f0f0";
+    color="#9aa0a6";
+    fontcolor="#5f6b7a";
+    "cidr:0.0.0.0/0" [label="0.0.0.0/0", shape=note, style="filled", fillcolor="#f7f7f7", color="#9aa0a6"];
+  }
+  "cidr:198.51.100.0/24" -> "res:app" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+  "cidr:203.0.113.0/24" -> "res:app" [label="tcp/22", color="#d98a1f", fontcolor="#d98a1f"];
+  "res:app" -> "cidr:0.0.0.0/0" [label="all", color="#d64545", fontcolor="#d64545", style="bold,dashed", penwidth=2.2];
+}

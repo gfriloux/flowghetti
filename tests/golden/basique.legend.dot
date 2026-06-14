@@ -1,0 +1,33 @@
+digraph flows {
+  rankdir=LR;
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-0cda00644e0506968" {
+    label="VPC vpc-0cda00644e0506968";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#eef4ff";
+    color="#3b7dd8";
+    fontcolor="#2e6fd8";
+    "res:esengineapp" [label="es_engine-app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+    "res:prodapp" [label="prod-app\n(nlb)", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+  }
+  "res:prodapp" -> "res:esengineapp" [label="tcp/443", color="#2e6fd8", fontcolor="#2e6fd8", penwidth=2.2];
+  subgraph cluster_legend {
+    label="Legend";
+    labelloc=t;
+    fontsize=12;
+    style="rounded";
+    color="#999999";
+    node [fontsize=10];
+    "lg_compute" [label="compute (ec2/ecs…)", shape=box, style="filled,rounded", fillcolor="#eaf3ff:#cfe8ff", color="#3b7dd8"];
+    "lg_lb" [label="load balancer", shape=ellipse, style="filled", fillcolor="#e2f7e2:#bfeec0", color="#2e9e4f"];
+    "lg_db" [label="database", shape=cylinder, style="filled", fillcolor="#fff0d6:#ffd699", color="#d98a1f"];
+    "lg_serverless" [label="serverless (lambda)", shape=component, style="filled", fillcolor="#f6e6ff:#e9ccff", color="#9b51e0"];
+    "lg_cidr" [label="CIDR / endpoint", shape=note, style="filled", fillcolor="#f7f7f7", color="#9aa0a6"];
+    "lg_prefixlist" [label="prefix list", shape=note, style="filled", fillcolor="#eee9fb", color="#8a6dd6"];
+    "lg_unresolved" [label="unresolved ref", shape=note, style="filled,dashed", fillcolor="#fff3cd", color="#d9a300"];
+    "lg_compute" -> "lg_lb" -> "lg_db" -> "lg_serverless" -> "lg_cidr" -> "lg_prefixlist" -> "lg_unresolved" [style=invis];
+  }
+}

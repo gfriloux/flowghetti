@@ -1,0 +1,10 @@
+{
+  "Modules": [
+    { "Key": "", "Source": "", "Dir": "." },
+    {
+      "Key": "net",
+      "Source": "git::ssh://git@example/net.git?ref=v1.0.0",
+      "Dir": ".terraform/modules/net"
+    }
+  ]
+}

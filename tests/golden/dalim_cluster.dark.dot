@@ -1,0 +1,25 @@
+digraph flows {
+  rankdir=LR;
+  bgcolor="#1e1f24";
+  node [fontname="sans-serif", penwidth=1.6, gradientangle=270, fontcolor="#f0f0f0"];
+  edge [fontname="sans-serif", penwidth=1.4];
+  subgraph "cluster_vpc_vpc-0cda00644e0506968" {
+    label="VPC vpc-0cda00644e0506968";
+    labelloc=t;
+    fontsize=12;
+    style="rounded,filled";
+    fillcolor="#1d2a3d";
+    color="#5ba2e8";
+    fontcolor="#a9c8ef";
+    "res:eselasticdata" [label="es_elastic-data\n(ec2)", shape=box, style="filled,rounded", fillcolor="#1d3147", color="#5ba2e8"];
+    "res:esengineapp" [label="es_engine-app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#1d3147", color="#5ba2e8"];
+    "res:esrenderapp" [label="es_render-app\n(ec2)", shape=box, style="filled,rounded", fillcolor="#1d3147", color="#5ba2e8"];
+    "res:prodapp" [label="prod-app\n(nlb)", shape=ellipse, style="filled", fillcolor="#1f3d2a", color="#4ec97a"];
+  }
+  "res:esengineapp" -> "res:eselasticdata" [label="tcp/5432", color="#4ec97a", fontcolor="#4ec97a"];
+  "res:esengineapp" -> "res:eselasticdata" [label="tcp/5601", color="#4ec97a", fontcolor="#4ec97a"];
+  "res:esengineapp" -> "res:eselasticdata" [label="tcp/9200", color="#4ec97a", fontcolor="#4ec97a"];
+  "res:esengineapp" -> "res:esrenderapp" [label="tcp/8080", color="#9aa4b2", fontcolor="#9aa4b2"];
+  "res:esrenderapp" -> "res:esengineapp" [label="tcp/8080", color="#9aa4b2", fontcolor="#9aa4b2"];
+  "res:prodapp" -> "res:esengineapp" [label="tcp/443", color="#5ba2e8", fontcolor="#5ba2e8", penwidth=2.2];
+}
